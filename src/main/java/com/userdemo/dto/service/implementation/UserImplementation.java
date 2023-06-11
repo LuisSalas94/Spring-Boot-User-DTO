@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserImplementation implements UserService {
@@ -21,5 +22,11 @@ public class UserImplementation implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User getUserById(Long userId) {
+       Optional<User> optionalUser = userRepository.findById(userId);
+       return optionalUser.get();
     }
 }

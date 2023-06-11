@@ -22,9 +22,17 @@ public class UserController {
     }
 
     @GetMapping
+    // http://localhost:8080/api/users
     public ResponseEntity<List<User>> getAllUsers() {
           List<User> userList = userService.getAllUsers();
           return  new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    // http://localhost:8080/api/users/1
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId) {
+         User savedUser = userService.getUserById(userId);
+         return new ResponseEntity<>(savedUser, HttpStatus.OK);
     }
 
 }
