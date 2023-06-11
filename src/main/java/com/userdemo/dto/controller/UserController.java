@@ -1,4 +1,5 @@
 package com.userdemo.dto.controller;
+import com.userdemo.dto.dto.UserDto;
 import com.userdemo.dto.entity.User;
 import com.userdemo.dto.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class UserController {
 
     @GetMapping
     // http://localhost:8080/api/users
-    public ResponseEntity<List<User>> getAllUsers() {
-          List<User> userList = userService.getAllUsers();
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+          List<UserDto> userList = userService.getAllUsers();
           return  new ResponseEntity<>(userList, HttpStatus.OK);
     }
 

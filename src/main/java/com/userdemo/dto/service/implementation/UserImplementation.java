@@ -1,11 +1,14 @@
 package com.userdemo.dto.service.implementation;
 
+import com.userdemo.dto.dto.UserDto;
 import com.userdemo.dto.entity.User;
+import com.userdemo.dto.mapper.UserMapper;
 import com.userdemo.dto.repository.UserRepository;
 import com.userdemo.dto.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +23,14 @@ public class UserImplementation implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getAllUsers() {
+        List<User> userList = userRepository.findAll();
+        List<UserDto> userDtoList = new ArrayList<>();
+        for(User user:userList) {
+            UserDto userDto = UserMapper.convertEntityToDto(user);
+            userDtoList.add(userDto);
+        }
+        return userDtoList;
     }
 
     @Override
