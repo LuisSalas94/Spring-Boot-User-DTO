@@ -5,6 +5,7 @@ import com.userdemo.dto.entity.User;
 import com.userdemo.dto.mapper.UserMapper;
 import com.userdemo.dto.repository.UserRepository;
 import com.userdemo.dto.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class UserImplementation implements UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public User createUser(User user) {
@@ -27,7 +30,9 @@ public class UserImplementation implements UserService {
         List<User> userList = userRepository.findAll();
         List<UserDto> userDtoList = new ArrayList<>();
         for(User user:userList) {
+            // Custom Mapper
             UserDto userDto = UserMapper.convertEntityToDto(user);
+                       
             userDtoList.add(userDto);
         }
         return userDtoList;
