@@ -34,8 +34,8 @@ public class UserImplementation implements UserService {
     }
 
     @Override
-    public User getUserById(Long userId) {
+    public UserDto getUserById(Long userId) {
        Optional<User> optionalUser = userRepository.findById(userId);
-       return optionalUser.get();
+       return UserMapper.convertEntityToDto(optionalUser.get());
     }
 }
