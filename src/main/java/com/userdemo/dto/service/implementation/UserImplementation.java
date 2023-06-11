@@ -31,8 +31,10 @@ public class UserImplementation implements UserService {
         List<UserDto> userDtoList = new ArrayList<>();
         for(User user:userList) {
             // Custom Mapper
-            UserDto userDto = UserMapper.convertEntityToDto(user);
-                       
+            //UserDto userDto = UserMapper.convertEntityToDto(user);
+
+            // ModelMapper
+            UserDto userDto = modelMapper.map(user, UserDto.class);
             userDtoList.add(userDto);
         }
         return userDtoList;

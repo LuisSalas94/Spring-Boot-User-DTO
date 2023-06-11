@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class DemoDtoApplication {
 	@Bean
-	private ModelMapper modelMapper(){
+	public ModelMapper modelMapper(){
 		return new ModelMapper();
 	}
 
